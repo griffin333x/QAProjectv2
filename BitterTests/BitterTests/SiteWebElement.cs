@@ -57,6 +57,17 @@ namespace BitterTests
             IWebElement notificationsLink = driver.FindElement(By.CssSelector("a.nav-link[href='notifications.php']"));
             return notificationsLink;
         }
+        //messages link
+        public static IWebElement messagesLink(IWebDriver driver)
+        {
+            //<li class="nav-item">
+                //< a class="nav-link" href="DirectMessage.php">
+                    //<img class="bannericons" src="images/messages.png">Messages</a>
+
+            IWebElement messagesLink = driver.FindElement(By.CssSelector("a.nav-link[href='DirectMessage.php']"));
+            return messagesLink;
+
+        }
 
 
 

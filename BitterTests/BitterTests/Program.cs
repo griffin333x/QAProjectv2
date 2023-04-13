@@ -80,6 +80,17 @@ namespace BitterTests
             {
                 Console.WriteLine("Test005 : Failed!");
             }
+
+            bool Test006 = SiteTest.Test006(driver);
+
+            if (Test006)
+            {
+                Console.WriteLine("Test006 : Passed!");
+            }
+            else
+            {
+                Console.WriteLine("Test006 : Failed!");
+            }
         }
 
     }

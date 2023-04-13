@@ -89,7 +89,7 @@ namespace BitterTests
             }
         }
 
-        public static bool Test004(IWebDriver driver)
+        public static bool Test004(IWebDriver driver) //HOME LINK
         {
             try
             {
@@ -110,7 +110,7 @@ namespace BitterTests
                 return false;
             }
         }
-        public static bool Test005(IWebDriver driver)
+        public static bool Test005(IWebDriver driver) //NOTIFICATIONS LINK
         {
             try
             {
@@ -131,6 +131,27 @@ namespace BitterTests
                 }
             }
 
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+        public static bool Test006(IWebDriver driver) //MESSAGES LINK
+        {
+            try
+            {
+                Thread.Sleep(2000);
+                IWebElement messagesLink = SiteWebElement.messagesLink(driver);
+                messagesLink.Click();
+                if (driver.Url.Contains("DirectMessage.php"))
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
             catch (Exception ex)
             {
                 return false;
