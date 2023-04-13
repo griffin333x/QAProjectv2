@@ -60,19 +60,42 @@ namespace BitterTests
         //messages link
         public static IWebElement messagesLink(IWebDriver driver)
         {
-            //<li class="nav-item">
-                //< a class="nav-link" href="DirectMessage.php">
-                    //<img class="bannericons" src="images/messages.png">Messages</a>
+
 
             IWebElement messagesLink = driver.FindElement(By.CssSelector("a.nav-link[href='DirectMessage.php']"));
             return messagesLink;
 
         }
+        //contact us link
+        public static IWebElement contactUsLink(IWebDriver driver)
+        {
+            IWebElement contactUsLink = driver.FindElement(By.CssSelector("a.nav-link[href='contactus']"));
+            return contactUsLink;
+        }
+        //userpage link
+        public static IWebElement userPageLink(IWebDriver driver)
+        {
+            IWebElement userPageLink = driver.FindElement(By.CssSelector("a[href='userpage.php?user_id=1025']"));
+            return userPageLink;
+        }
+        //dropdown menu for logout
+        public static IWebElement logoutDropdown(IWebDriver driver)
+        {
+            IWebElement logoutDropdown = driver.FindElement(By.Id("dropdown01"));
+            return logoutDropdown;
+        }
+        //logout button
+        public static IWebElement logoutButton(IWebDriver driver)
+        {
+            IWebElement logoutButton = driver.FindElement(By.LinkText("Logout"));
+            return logoutButton;
+        }
 
 
 
 
-        
+
+
 
     }
 }

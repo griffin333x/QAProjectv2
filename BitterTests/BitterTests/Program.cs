@@ -91,7 +91,56 @@ namespace BitterTests
             {
                 Console.WriteLine("Test006 : Failed!");
             }
+
+            bool Test007 = SiteTest.Test007(driver);
+
+            if (Test007)
+            {
+                Console.WriteLine("Test007 : Passed!");
+            }
+            else
+            {
+                Console.WriteLine("Test007 : Failed!");
+            }
+
+            bool Test008 = SiteTest.Test008(driver);
+            
+            if (Test008)
+            {
+                Console.WriteLine("Test008 : Passed!");
+            }
+            else
+            {
+                Console.WriteLine("Test008 : Failed!");
+            }
+
+            bool Test009 = SiteTest.Test009(driver);
+
+            if (Test009)
+            {
+                Console.WriteLine("Test009 : Passed!");
+            }
+            else
+            {
+                Console.WriteLine("Test009 : Failed!");
+            }
         }
+
+        public static void SiteReset()
+        {
+            // You'll need to modify the database, uid, and pwd fields of myConnectionString to use your own database.
+            string myConnectionString = "server=10.157.123.12;database=bitter-site7;uid=site7;pwd=aQ7zlR0dpbTsTqns;";
+            connection = new MySqlConnection(myConnectionString);
+            MySqlCommand command = new MySqlCommand();
+
+            command.Connection = connection;
+            command.CommandText = "reset";
+            command.CommandType = System.Data.CommandType.StoredProcedure;
+            connection.Open();
+            command.ExecuteNonQuery();
+            connection.Close();
+        }
+
 
     }
 }

@@ -22,7 +22,7 @@ namespace BitterTests
             try
             {
                 LoginPage(driver, "nick", "asdf");
-                Thread.Sleep(2000);
+                Thread.Sleep(1000);
 
                 if (driver.Url.Contains("index.php"))
                 {
@@ -43,7 +43,7 @@ namespace BitterTests
         {
             try
             {
-                Thread.Sleep(2000);
+                Thread.Sleep(1000);
                 //try search function
                 IWebElement search = SiteWebElement.searchButton(driver);
 
@@ -67,7 +67,7 @@ namespace BitterTests
         {
             try
             {
-                Thread.Sleep(2000);
+                Thread.Sleep(1000);
                 //try search function
                 IWebElement searchTxt = SiteWebElement.searchTextBox(driver);
                 IWebElement searchBtn = SiteWebElement.searchButton(driver);
@@ -93,7 +93,7 @@ namespace BitterTests
         {
             try
             {
-                Thread.Sleep(2000);
+                Thread.Sleep(1000);
                 IWebElement homeLink = SiteWebElement.homeLink(driver);
                 homeLink.Click();
                 if (driver.Url.Contains("index.php"))
@@ -115,7 +115,7 @@ namespace BitterTests
             try
             {
 
-                Thread.Sleep(2000);
+                Thread.Sleep(1000);
 
                 IWebElement notificationsLink = SiteWebElement.notificationsLink(driver);
 
@@ -140,10 +140,81 @@ namespace BitterTests
         {
             try
             {
-                Thread.Sleep(2000);
+                Thread.Sleep(1000);
                 IWebElement messagesLink = SiteWebElement.messagesLink(driver);
                 messagesLink.Click();
                 if (driver.Url.Contains("DirectMessage.php"))
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+        public static bool Test007(IWebDriver driver) //CONTACT US LINK
+        {
+            try
+            {
+                Thread.Sleep(1000);
+                IWebElement contactUsLink = SiteWebElement.contactUsLink(driver);
+                contactUsLink.Click();
+                if (driver.Url.Contains("contactus"))
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+        public static bool Test008(IWebDriver driver) //USERPAGE LINK
+        {
+            try
+            {
+                driver.Navigate().GoToUrl("http://10.157.123.12/site7/index.php");
+
+                Thread.Sleep(1000);
+
+                IWebElement userPageLink = SiteWebElement.userPageLink(driver);
+                userPageLink.Click();
+                if (driver.Url.Contains("userpage.php"))
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+        public static bool Test009(IWebDriver driver) //LOGOUT
+        {
+            try
+            {
+                Thread.Sleep(1000);
+                IWebElement logoutDropdown = SiteWebElement.logoutDropdown(driver);
+                logoutDropdown.Click();
+                IWebElement logoutButton = SiteWebElement.logoutButton(driver);
+                logoutButton.Click();
+                if (driver.Url.Contains("login.php"))
                 {
                     return true;
                 }
