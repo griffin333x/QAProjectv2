@@ -21,6 +21,7 @@ namespace BitterTests
         {
             try
             {
+
                 LoginPage(driver, "nick", "asdf");
                 Thread.Sleep(1000);
 
@@ -228,14 +229,40 @@ namespace BitterTests
                 return false;
             }
         }
-            
+
+        public static bool Test010(IWebDriver driver) //EDIT PROFILE PIC LINK
+        {
+            try
+            {
+                LoginPage(driver, "nick", "asdf");
+                Thread.Sleep(1000);
+                IWebElement logoutDropdown = SiteWebElement.logoutDropdown(driver);
+                logoutDropdown.Click();
+                IWebElement editProfilePic = SiteWebElement.editProfilePic(driver);
+                editProfilePic.Click();
+                if (driver.Url.Contains("edit_photo.php"))
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+
         
-        
-        
-        
-        
-        
-        
+
+
+
+
+
+
         public static void LoginPage(IWebDriver driver, string strUsername, string strPassword)
             {
                 driver.Navigate().GoToUrl("http://10.157.123.12/site7/login.php");

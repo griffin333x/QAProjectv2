@@ -90,6 +90,14 @@ namespace BitterTests
             IWebElement logoutButton = driver.FindElement(By.LinkText("Logout"));
             return logoutButton;
         }
+        //edit profile pic
+        public static IWebElement editProfilePic(IWebDriver driver)
+        {
+            IWebElement editProfilePic = driver.FindElement(By.LinkText("Edit Profile Picture"));
+            return editProfilePic;
+        }
+       //upload profile pic
+
 
 
 
