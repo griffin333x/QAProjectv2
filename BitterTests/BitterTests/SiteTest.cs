@@ -197,7 +197,7 @@ namespace BitterTests
                 IWebElement createAccountLink = SiteWebElement.contactUsLink(driver);
                 createAccountLink.Click();
 
-                if (driver.Url.Contains("signup.php"
+                if (driver.Url.Contains("signup.php")
                 {
                     return true;
                 }
