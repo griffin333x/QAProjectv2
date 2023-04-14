@@ -188,6 +188,30 @@ namespace BitterTests
             }
         }
 
+        public static bool Test111(IWebDriver driver) //CREATE ACCOUNT US LINK
+        {
+            try
+            {
+                Thread.Sleep(1000);
+
+                IWebElement createAccountLink = SiteWebElement.contactUsLink(driver);
+                createAccountLink.Click();
+
+                if (driver.Url.Contains("signup.php"
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
         public static bool Test008(IWebDriver driver) //USERPAGE LINK
         {
             try

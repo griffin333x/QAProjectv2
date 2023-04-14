@@ -72,6 +72,14 @@ namespace BitterTests
             IWebElement contactUsLink = driver.FindElement(By.CssSelector("a.nav-link[href='contactus']"));
             return contactUsLink;
         }
+
+        //create account link
+        public static IWebElement createAccountLink(IWebDriver driver)
+        {
+            
+            IWebElement createAccountLink = driver.FindElement(By.LinkText("login.html"));
+            return createAccountLink;
+        }
         //userpage link
         public static IWebElement userPageLink(IWebDriver driver)
         {

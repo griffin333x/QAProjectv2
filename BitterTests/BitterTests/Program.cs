@@ -104,6 +104,17 @@ namespace BitterTests
                 Console.WriteLine("Test007 : Failed!");
             }
 
+            bool Test111 = SiteTest.Test007(driver);
+
+            if (Test111)
+            {
+                Console.WriteLine("Test00111 : Passed!");
+            }
+            else
+            {
+                Console.WriteLine("Test111 : Failed!");
+            }
+
             bool Test008 = SiteTest.Test008(driver);
             
             if (Test008)
