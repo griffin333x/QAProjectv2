@@ -8,10 +8,11 @@ using OpenQA.Selenium.Chrome;
 using System.Threading;
 using System.Security.Policy;
 
-
+// test 1 login with a newly created user 
+// test 2 
 namespace BitterTests
 {
-    internal class SiteTest
+    public class SiteTests
     {
     }
 }
