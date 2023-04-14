@@ -191,6 +191,27 @@ namespace BitterTests
             {
                 Console.WriteLine("Test015 : Failed!");
             }
+            bool Test017 = SiteTest.Test017(driver);
+
+            if (Test017)
+            {
+                Console.WriteLine("Test017 : Passed!");
+            }
+            else
+            {
+                Console.WriteLine("Test017 : Failed!");
+            }
+
+            bool Test019 = SiteTest.Test019(driver);
+
+            if (Test019)
+            {
+                Console.WriteLine("Test019 : Passed!");
+            }
+            else
+            {
+                Console.WriteLine("Test019 : Failed!");
+            }
         }
 
         public static void SiteReset()

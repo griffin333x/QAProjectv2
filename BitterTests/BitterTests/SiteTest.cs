@@ -382,14 +382,13 @@ namespace BitterTests
         //test 15 is worth 2
         public static bool Test015(IWebDriver driver) //CREATE USER - seems to be bug with email length
         {
-            IAlert alert = driver.SwitchTo().Alert();
 
-            string success = alert.Text;
-            
             try
             {
-                RegisterPage(driver, "NB", "E3B3Y4");
                 
+                RegisterPage(driver, "NB", "E3B3Y4");
+                IAlert alert = driver.SwitchTo().Alert();
+                string success = alert.Text;
                 Thread.Sleep(1000);
 
                 if (success.Contains("NEW TROLL USER ACCEPTED AND INSERTED!"))
@@ -402,22 +401,18 @@ namespace BitterTests
                     return false;
                 }
             }
-            catch (Exception ex)
+            catch 
             {
                 return false;
             }
         }
         public static bool Test017(IWebDriver driver) //TESTS POSTAL CODE TOO LONG
         {
-
-            IAlert alert = driver.SwitchTo().Alert();
-
-            string success = alert.Text;
-            
             try
             {
                 RegisterPage(driver, "NB", "E3A94576");
-
+                IAlert alert = driver.SwitchTo().Alert();
+                string success = alert.Text;
                 Thread.Sleep(1000);
                 
                 if (success.Contains("NEW TROLL USER ACCEPTED AND INSERTED!"))
@@ -435,9 +430,33 @@ namespace BitterTests
                 return false;
             }
         }
-        
-        //17.test long postal code 
-        //18.test password confirm mismatch 
+        public static bool Test019(IWebDriver driver) //TESTS PASSWORD NEEDING MATCH
+        {
+            try
+            {
+                RegisterPageWithoutThings(driver, "NB", "E3A9Z7", "HELLO", "GOODBYE", "test@gmail.com");
+                IAlert alert = driver.SwitchTo().Alert();
+
+                string success = alert.Text;
+                Thread.Sleep(1000);
+
+                if (success.Contains("NEW TROLL USER ACCEPTED AND INSERTED!"))
+                {
+                    alert.Accept();
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        //17.test long postal code &
+        //18.test password confirm mismatch &
         //19.test login with new user 
         //20.test make post with new user 
         //21.test retweet from new user 
@@ -487,6 +506,37 @@ namespace BitterTests
             SiteWebElement.txtLoginUserName(driver).SendKeys(username);
             SiteWebElement.txtLoginPassword(driver).SendKeys(password);
             SiteWebElement.txtConfirmPassword(driver).SendKeys(password);
+            SiteWebElement.txtPhoneNumber(driver).SendKeys(phoneNumber);
+            SiteWebElement.txtAddress(driver).SendKeys(address);
+            SiteWebElement.txtProvince(driver).Click();
+            SiteWebElement.txtProvince(driver).SendKeys(province);
+            SiteWebElement.txtPostalCode(driver).SendKeys(postalcode);
+            SiteWebElement.txtUrl(driver).SendKeys(url);
+            SiteWebElement.txtDesc(driver).SendKeys(description);
+            SiteWebElement.txtLocation(driver).SendKeys(location);
+            SiteWebElement.btnLogin(driver).Click();
+
+        }
+        public static void RegisterPageWithoutThings(IWebDriver driver, string province, string postalcode, string password, string confirmPass, string email)
+        {
+            driver.Url = "http://10.157.123.12/site7/signup.php";
+
+            var faker = new Faker();
+
+            // Generate fake data in variables so they can be used to log in
+            string firstName = faker.Name.FirstName();
+            string lastName = faker.Name.LastName();
+            string username = faker.Internet.UserName();
+            string phoneNumber = faker.Phone.PhoneNumberFormat();
+            string address = faker.Address.StreetAddress();
+            string url = faker.Internet.Url();
+            string description = faker.Rant.Review();
+            string location = faker.Address.City();
+            //send fake data to the register page
+            SiteWebElement.txtFirstName(driver).SendKeys(firstName);
+            SiteWebElement.txtLastName(driver).SendKeys(lastName);
+            SiteWebElement.txtEmail(driver).SendKeys(email);
+            SiteWebElement.txtLoginUserName(driver).SendKeys(username);
             SiteWebElement.txtPhoneNumber(driver).SendKeys(phoneNumber);
             SiteWebElement.txtAddress(driver).SendKeys(address);
             SiteWebElement.txtProvince(driver).Click();
