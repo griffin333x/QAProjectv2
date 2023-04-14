@@ -13,9 +13,9 @@ namespace BitterTests
 {
     class SiteWebElement
     {
-        public static IWebElement txtLoginUserName (IWebDriver driver)
+        public static IWebElement txtLoginUserName(IWebDriver driver)
         {
-            
+
             //retrieve the username text box
             IWebElement txtLoginUserName = driver.FindElement(By.Id("username"));
             return txtLoginUserName;
@@ -36,6 +36,7 @@ namespace BitterTests
         //search button
         public static IWebElement searchButton(IWebDriver driver)
         {
+            //some of these selectors are really long, couldn't get it to work with more simple ones
             IWebElement searchButton = driver.FindElement(By.CssSelector("button.btn.btn-outline-light.my-2.my-sm-0[type='submit']"));
             return searchButton;
         }
@@ -104,8 +105,72 @@ namespace BitterTests
             IWebElement editProfilePic = driver.FindElement(By.LinkText("Edit Profile Picture"));
             return editProfilePic;
         }
-
-
+        //first name field
+        public static IWebElement txtFirstName(IWebDriver driver)
+        {
+            IWebElement txtFirstName = driver.FindElement(By.Id("firstname"));
+            return txtFirstName;
+        }
+        //last name field
+        public static IWebElement txtLastName(IWebDriver driver)
+        {
+            IWebElement txtLastName = driver.FindElement(By.Id("lastname"));
+            return txtLastName;
+        }
+        //email field
+        public static IWebElement txtEmail(IWebDriver driver)
+        {
+            IWebElement txtEmail = driver.FindElement(By.Id("email"));
+            return txtEmail;
+        }
+        //confirm password field
+        public static IWebElement txtConfirmPassword(IWebDriver driver)
+        {
+            IWebElement txtConfirmPassword = driver.FindElement(By.Id("confirm"));
+            return txtConfirmPassword;
+        }
+        //phone number field
+        public static IWebElement txtPhoneNumber(IWebDriver driver)
+        {
+            IWebElement txtPhoneNumber = driver.FindElement(By.Id("phone"));
+            return txtPhoneNumber;
+        }
+        //address field
+        public static IWebElement txtAddress(IWebDriver driver)
+        {
+            IWebElement txtAddress = driver.FindElement(By.Id("address"));
+            return txtAddress;
+        }
+        //province field
+        public static IWebElement txtProvince(IWebDriver driver)
+        {
+            IWebElement txtProvince = driver.FindElement(By.Id("province"));
+            return txtProvince;
+        }
+        //postal code field
+        public static IWebElement txtPostalCode(IWebDriver driver)
+        {
+            IWebElement txtPostalCode = driver.FindElement(By.Id("postalCode"));
+            return txtPostalCode;
+        }
+        //url field
+        public static IWebElement txtUrl(IWebDriver driver)
+        {
+            IWebElement txtUrl = driver.FindElement(By.Id("url"));
+            return txtUrl;
+        }
+        //description field
+        public static IWebElement txtDesc(IWebDriver driver)
+        {
+            IWebElement txtDesc = driver.FindElement(By.Id("desc"));
+            return txtDesc;
+        }
+        //location field
+        public static IWebElement txtLocation(IWebDriver driver)
+        {
+            IWebElement txtLocation = driver.FindElement(By.Id("location"));
+            return txtLocation;
+        }
 
 
 
@@ -116,4 +181,6 @@ namespace BitterTests
 
 
     }
+
+    
 }

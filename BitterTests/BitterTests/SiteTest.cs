@@ -359,6 +359,75 @@ namespace BitterTests
             }
         }
 
+        public static bool Test013(IWebDriver driver) //LOGIN WITH NO USERNAME
+        {
+            try
+            {
+                LoginPage(driver, "", "asdf");
+
+                Thread.Sleep(1000);
+
+                if (driver.Url.Contains("login.php"))
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+        public static bool Test014(IWebDriver driver) //LOGIN WITH NO PASSWORD
+        {
+            try
+            {
+                LoginPage(driver, "nick", "");
+
+                Thread.Sleep(1000);
+
+                if (driver.Url.Contains("login.php"))
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+        public static bool Test015(IWebDriver driver) //CREATE USER - seems to be bug with email length
+        {
+            try
+            {
+                RegisterPage(driver, "NB", "E3B3Y4");
+
+                Thread.Sleep(1000);
+
+                if (driver.Url.Contains("login.php"))
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+
 
 
 
@@ -376,9 +445,50 @@ namespace BitterTests
                 SiteWebElement.btnLogin(driver).Click();
             }
 
+        public static void RegisterPage(IWebDriver driver, string province, string postalcode)
+        {
+            driver.Url = "http://10.157.123.12/site7/signup.php";
 
-        
-    
+            var faker = new Faker();
+
+            // Generate fake data in variables so they can be used to log in
+            string firstName = faker.Name.FirstName();
+            string lastName = faker.Name.LastName();
+            string email = faker.Internet.Email();
+            string username = faker.Internet.UserName();
+            string password = faker.Internet.Password();
+            string phoneNumber = faker.Phone.PhoneNumberFormat();
+            string address = faker.Address.StreetAddress();
+            string url = faker.Internet.Url();
+            string description = faker.Rant.Review();
+            string location = faker.Address.City();
+            //send fake data to the register page
+            SiteWebElement.txtFirstName(driver).SendKeys(firstName);
+            SiteWebElement.txtLastName(driver).SendKeys(lastName);
+            SiteWebElement.txtEmail(driver).SendKeys(email);
+            SiteWebElement.txtLoginUserName(driver).SendKeys(username);
+            SiteWebElement.txtLoginPassword(driver).SendKeys(password);
+            SiteWebElement.txtConfirmPassword(driver).SendKeys(password);
+            SiteWebElement.txtPhoneNumber(driver).SendKeys(phoneNumber);
+            SiteWebElement.txtAddress(driver).SendKeys(address);
+            SiteWebElement.txtProvince(driver).Click();
+            SiteWebElement.txtProvince(driver).SendKeys(province);
+            SiteWebElement.txtPostalCode(driver).SendKeys(postalcode);
+            SiteWebElement.txtUrl(driver).SendKeys(url);
+            SiteWebElement.txtDesc(driver).SendKeys(description);
+            SiteWebElement.txtLocation(driver).SendKeys(location);
+            SiteWebElement.btnLogin(driver).Click();
+
+        }
+        public static void FakeData(IWebDriver driver)
+        {
+            // Create a Faker object.
+            var faker = new Faker("en");
+
+            Thread.Sleep(5000);
+        }
+
+
     }
 }
 
