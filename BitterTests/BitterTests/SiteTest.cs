@@ -12,7 +12,7 @@ using System.Security.Policy;
 // test 2 
 namespace BitterTests
 {
-    public class SiteTests
+    public class SiteTest
     {
     }
 }

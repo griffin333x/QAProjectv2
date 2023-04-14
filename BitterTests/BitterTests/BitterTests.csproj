@@ -50,7 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="SiteTest.cs" />
-    <Compile Include="SiteWebElements.cs" />
+    <Compile Include="SiteWebElement.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

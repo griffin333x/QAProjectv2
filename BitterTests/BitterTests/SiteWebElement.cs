@@ -5,7 +5,7 @@ using OpenQA.Selenium.Chrome;
 namespace BitterTests
 {
 
-    class BitterElements
+    class SiteWebElement
     {
         
         public static IWebElement TxtLoginUsername(IWebDriver driver)
