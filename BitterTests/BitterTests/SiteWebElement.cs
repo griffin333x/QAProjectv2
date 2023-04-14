@@ -96,7 +96,9 @@ namespace BitterTests
             IWebElement editProfilePic = driver.FindElement(By.LinkText("Edit Profile Picture"));
             return editProfilePic;
         }
-       //upload profile pic
+
+
+
 
 
 

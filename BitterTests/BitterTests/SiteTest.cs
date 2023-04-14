@@ -8,7 +8,7 @@ using OpenQA.Selenium.Chrome;
 using System.Threading;
 using System.Security.Policy;
 using Bogus;
-using MySql.Data.MySqlClient;
+using MySql.Data.MySqlClient; //tried getting the connection to work, had trouble with it
 
 
 
@@ -23,6 +23,7 @@ namespace BitterTests
             {
 
                 LoginPage(driver, "nick", "asdf");
+
                 Thread.Sleep(1000);
 
                 if (driver.Url.Contains("index.php"))
@@ -45,7 +46,7 @@ namespace BitterTests
             try
             {
                 Thread.Sleep(1000);
-                //try search function
+
                 IWebElement search = SiteWebElement.searchButton(driver);
 
                 search.Click();
@@ -69,9 +70,10 @@ namespace BitterTests
             try
             {
                 Thread.Sleep(1000);
-                //try search function
+
                 IWebElement searchTxt = SiteWebElement.searchTextBox(driver);
                 IWebElement searchBtn = SiteWebElement.searchButton(driver);
+
                 searchTxt.Click();
                 searchTxt.SendKeys("test");
                 searchBtn.Click();
@@ -95,8 +97,10 @@ namespace BitterTests
             try
             {
                 Thread.Sleep(1000);
+
                 IWebElement homeLink = SiteWebElement.homeLink(driver);
                 homeLink.Click();
+
                 if (driver.Url.Contains("index.php"))
                 {
                     return true;
@@ -115,7 +119,6 @@ namespace BitterTests
         {
             try
             {
-
                 Thread.Sleep(1000);
 
                 IWebElement notificationsLink = SiteWebElement.notificationsLink(driver);
@@ -142,8 +145,10 @@ namespace BitterTests
             try
             {
                 Thread.Sleep(1000);
+
                 IWebElement messagesLink = SiteWebElement.messagesLink(driver);
                 messagesLink.Click();
+
                 if (driver.Url.Contains("DirectMessage.php"))
                 {
                     return true;
@@ -164,8 +169,10 @@ namespace BitterTests
             try
             {
                 Thread.Sleep(1000);
+
                 IWebElement contactUsLink = SiteWebElement.contactUsLink(driver);
                 contactUsLink.Click();
+
                 if (driver.Url.Contains("contactus"))
                 {
                     return true;
@@ -191,6 +198,7 @@ namespace BitterTests
 
                 IWebElement userPageLink = SiteWebElement.userPageLink(driver);
                 userPageLink.Click();
+
                 if (driver.Url.Contains("userpage.php"))
                 {
                     return true;
@@ -211,10 +219,13 @@ namespace BitterTests
             try
             {
                 Thread.Sleep(1000);
+
                 IWebElement logoutDropdown = SiteWebElement.logoutDropdown(driver);
                 logoutDropdown.Click();
+
                 IWebElement logoutButton = SiteWebElement.logoutButton(driver);
                 logoutButton.Click();
+
                 if (driver.Url.Contains("login.php"))
                 {
                     return true;
@@ -235,11 +246,15 @@ namespace BitterTests
             try
             {
                 LoginPage(driver, "nick", "asdf");
+
                 Thread.Sleep(1000);
+
                 IWebElement logoutDropdown = SiteWebElement.logoutDropdown(driver);
                 logoutDropdown.Click();
+
                 IWebElement editProfilePic = SiteWebElement.editProfilePic(driver);
                 editProfilePic.Click();
+
                 if (driver.Url.Contains("edit_photo.php"))
                 {
                     return true;
@@ -255,8 +270,70 @@ namespace BitterTests
             }
         }
 
+        public static bool Test011(IWebDriver driver) //LOGIN WITH INCORRECT PASSWORD
+        {
+            try
+            {
+                //couldn't get the webpage to properly reset, so I just logged out and logged back in with the incorrect password
+                IWebElement logoutDropdown = SiteWebElement.logoutDropdown(driver);
+                logoutDropdown.Click();
 
-        
+                IWebElement logoutButton = SiteWebElement.logoutButton(driver);
+                logoutButton.Click();
+
+                LoginPage(driver, "nick", "hacked");
+                
+                IAlert alert = driver.SwitchTo().Alert();
+
+                string success = alert.Text;
+
+                Thread.Sleep(1000);
+
+                if (success.Contains("Incorrect Password. Please Try again!"))
+                {
+                    alert.Accept();
+                    return true;
+                    
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+        public static bool Test012(IWebDriver driver) //LOGIN WITH INCORRECT USERNAME
+        {
+            try
+            {
+                LoginPage(driver, "hacker", "asdf");
+
+                IAlert alert = driver.SwitchTo().Alert();
+
+                string success = alert.Text;
+
+                Thread.Sleep(1000);
+
+                if (success.Contains("Incorrect Screen Name. Please Try again!"))
+                {
+                    alert.Accept();
+                    return true;
+
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
 
 
 
@@ -265,7 +342,7 @@ namespace BitterTests
 
         public static void LoginPage(IWebDriver driver, string strUsername, string strPassword)
             {
-                driver.Navigate().GoToUrl("http://10.157.123.12/site7/login.php");
+            driver.Url = "http://10.157.123.12/site7/login.php";
 
                 //enter username
                 SiteWebElement.txtLoginUserName(driver).SendKeys(strUsername);

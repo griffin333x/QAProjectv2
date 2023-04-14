@@ -21,9 +21,10 @@ namespace BitterTests
         private static MySqlConnection connection;
         static void Main(string[] args)
         {
+            
 
             IWebDriver driver = new ChromeDriver(@"C:\Selenium");
-
+            //SiteReset();
             driver.Manage().Window.Maximize();
 
 
@@ -135,11 +136,32 @@ namespace BitterTests
             {
                 Console.WriteLine("Test010 : Failed!");
             }
+
+            bool Test011 = SiteTest.Test011(driver);
+
+            if (Test011)
+            {
+                Console.WriteLine("Test011 : Passed!");
+            }
+            else
+            {
+                Console.WriteLine("Test011 : Failed!");
+            }
+
+            bool Test012 = SiteTest.Test012(driver);
+
+            if (Test012)
+            {
+                Console.WriteLine("Test012 : Passed!");
+            }
+            else
+            {
+                Console.WriteLine("Test012 : Failed!");
+            }
         }
 
         public static void SiteReset()
         {
-            // You'll need to modify the database, uid, and pwd fields of myConnectionString to use your own database.
             string myConnectionString = "server=10.157.123.12;database=bitter-site7;uid=site7;pwd=aQ7zlR0dpbTsTqns;";
             connection = new MySqlConnection(myConnectionString);
             MySqlCommand command = new MySqlCommand();
