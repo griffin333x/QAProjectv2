@@ -455,6 +455,35 @@ namespace BitterTests
                 return false;
             }
         }
+        public static bool Test020(IWebDriver driver) //SEND MESSAGE TO USER WHO DOESNT EXIST
+        {
+            try
+            {
+                LoginPage(driver, "nick", "asdf");
+                
+                IWebElement messagesLink = SiteWebElement.messagesLink(driver);
+                
+                messagesLink.Click();
+                Thread.Sleep(1000);
+                
+                SiteWebElement.MsgNameField(driver).SendKeys("shrek");
+                SiteWebElement.MsgContentField(driver).SendKeys("yo yo whats up buddy boy");
+
+                if (SiteWebElement.PostContentField(driver).Text.Contains("just now"))
+                {
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
+            }
+
+            catch
+            {
+                return false;
+            }
+        }
         //17.test long postal code &
         //18.test password confirm mismatch &
         //19.test login with new user 
