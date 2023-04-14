@@ -191,6 +191,18 @@ namespace BitterTests
             {
                 Console.WriteLine("Test015 : Failed!");
             }
+
+            bool Test016 = SiteTest.Test016(driver);
+
+            if (Test016)
+            {
+                Console.WriteLine("Test016 : Passed!");
+            }
+            else
+            {
+                Console.WriteLine("Test016 : Failed!");
+            }
+
             bool Test017 = SiteTest.Test017(driver);
 
             if (Test017)
@@ -202,6 +214,17 @@ namespace BitterTests
                 Console.WriteLine("Test017 : Failed!");
             }
 
+            bool Test018 = SiteTest.Test018(driver);
+
+            if (Test018)
+            {
+                Console.WriteLine("Test018 : Passed!");
+            }
+            else
+            {
+                Console.WriteLine("Test018 : Failed!");
+            }
+
             bool Test019 = SiteTest.Test019(driver);
 
             if (Test019)
@@ -211,6 +234,27 @@ namespace BitterTests
             else
             {
                 Console.WriteLine("Test019 : Failed!");
+            }
+
+            //bool Test020 = SiteTest.Test020(driver);
+
+            //if (Test020)
+            //{
+            //    Console.WriteLine("Test020 : Passed!");
+            //}
+            //else
+            //{
+            //    Console.WriteLine("Test020 : Failed!");
+            //}
+            bool Test021 = SiteTest.Test021(driver);
+
+            if (Test021)
+            {
+                Console.WriteLine("Test021 : Passed!");
+            }
+            else
+            {
+                Console.WriteLine("Test021 : Failed!");
             }
         }
 
