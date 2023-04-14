@@ -74,40 +74,35 @@ namespace BitterTests
             IWebElement signupName = driver.FindElement(By.Id("address"));
             return signupName;
         }
-        public static IWebElement SignupChooseProvince(IWebDriver driver)
+        public static IWebElement SignupProv(IWebDriver driver)
+        {
+            //returns the login button from the form authentication page
+            IWebElement signupName = driver.FindElement(By.Id("province"));
+            return signupName;
+        }
+
+        public static IWebElement SignupPostalCode(IWebDriver driver)
+        {
+            //returns the login button from the form authentication page
+            IWebElement signupName = driver.FindElement(By.Id("postalCode"));
+            return signupName;
+        }
+        public static IWebElement SignupURL(IWebDriver driver)
+        {
+            //returns the login button from the form authentication page
+            IWebElement signupName = driver.FindElement(By.Id("url"));
+            return signupName;
+        }
+        public static IWebElement SignupDescription(IWebDriver driver)
         {
             //returns the login button from the form authentication page
             IWebElement signupName = driver.FindElement(By.Id("firstname"));
             return signupName;
         }
-        public static IWebElement SignupName(IWebDriver driver)
+        public static IWebElement SignupLocation(IWebDriver driver)
         {
             //returns the login button from the form authentication page
-            IWebElement signupName = driver.FindElement(By.Id("firstname"));
-            return signupName;
-        }
-        public static IWebElement SignupName(IWebDriver driver)
-        {
-            //returns the login button from the form authentication page
-            IWebElement signupName = driver.FindElement(By.Id("firstname"));
-            return signupName;
-        }
-        public static IWebElement SignupName(IWebDriver driver)
-        {
-            //returns the login button from the form authentication page
-            IWebElement signupName = driver.FindElement(By.Id("firstname"));
-            return signupName;
-        }
-        public static IWebElement SignupName(IWebDriver driver)
-        {
-            //returns the login button from the form authentication page
-            IWebElement signupName = driver.FindElement(By.Id("firstname"));
-            return signupName;
-        }
-        public static IWebElement SignupName(IWebDriver driver)
-        {
-            //returns the login button from the form authentication page
-            IWebElement signupName = driver.FindElement(By.Id("firstname"));
+            IWebElement signupName = driver.FindElement(By.Id("location"));
             return signupName;
         }
 
