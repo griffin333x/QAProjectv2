@@ -36,7 +36,7 @@ namespace BitterTests
                     return false;
                 }
             }
-            catch (Exception ex)
+            catch 
             {
                 return false;
             }
@@ -60,7 +60,7 @@ namespace BitterTests
                     return false;
                 }
             }
-            catch (Exception ex)
+            catch 
             {
                 return false;
             }
@@ -86,7 +86,7 @@ namespace BitterTests
                     return false;
                 }
             }
-            catch (Exception ex)
+            catch 
             {
                 return false;
             }
@@ -110,7 +110,7 @@ namespace BitterTests
                     return false;
                 }
             }
-            catch (Exception ex)
+            catch 
             {
                 return false;
             }
@@ -135,7 +135,7 @@ namespace BitterTests
                 }
             }
 
-            catch (Exception ex)
+            catch 
             {
                 return false;
             }
@@ -158,7 +158,7 @@ namespace BitterTests
                     return false;
                 }
             }
-            catch (Exception ex)
+            catch 
             {
                 return false;
             }
@@ -182,7 +182,7 @@ namespace BitterTests
                     return false;
                 }
             }
-            catch (Exception ex)
+            catch 
             {
                 return false;
             }
@@ -208,7 +208,7 @@ namespace BitterTests
                     return false;
                 }
             }
-            catch (Exception ex)
+            catch 
             {
                 return false;
             }
@@ -235,7 +235,7 @@ namespace BitterTests
                     return false;
                 }
             }
-            catch (Exception ex)
+            catch 
             {
                 return false;
             }
@@ -264,7 +264,7 @@ namespace BitterTests
                     return false;
                 }
             }
-            catch (Exception ex)
+            catch 
             {
                 return false;
             }
@@ -300,7 +300,7 @@ namespace BitterTests
                     return false;
                 }
             }
-            catch (Exception ex)
+            catch 
             {
                 return false;
             }
@@ -329,7 +329,7 @@ namespace BitterTests
                     return false;
                 }
             }
-            catch (Exception ex)
+            catch 
             {
                 return false;
             }
@@ -352,7 +352,7 @@ namespace BitterTests
                     return false;
                 }
             }
-            catch (Exception ex)
+            catch 
             {
                 return false;
             }
@@ -374,7 +374,7 @@ namespace BitterTests
                     return false;
                 }
             }
-            catch (Exception ex)
+            catch 
             {
                 return false;
             }
@@ -382,14 +382,19 @@ namespace BitterTests
         //test 15 is worth 2
         public static bool Test015(IWebDriver driver) //CREATE USER - seems to be bug with email length
         {
+            IAlert alert = driver.SwitchTo().Alert();
+
+            string success = alert.Text;
+            
             try
             {
                 RegisterPage(driver, "NB", "E3B3Y4");
-
+                
                 Thread.Sleep(1000);
 
-                if (driver.Url.Contains("login.php"))
+                if (success.Contains("NEW TROLL USER ACCEPTED AND INSERTED!"))
                 {
+                    alert.Accept();
                     return true;
                 }
                 else
@@ -402,6 +407,35 @@ namespace BitterTests
                 return false;
             }
         }
+        public static bool Test017(IWebDriver driver) //TESTS POSTAL CODE TOO LONG
+        {
+
+            IAlert alert = driver.SwitchTo().Alert();
+
+            string success = alert.Text;
+            
+            try
+            {
+                RegisterPage(driver, "NB", "E3A94576");
+
+                Thread.Sleep(1000);
+                
+                if (success.Contains("NEW TROLL USER ACCEPTED AND INSERTED!"))
+                {
+                    alert.Accept();
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
+            }
+            catch 
+            {
+                return false;
+            }
+        }
+        
         //17.test long postal code 
         //18.test password confirm mismatch 
         //19.test login with new user 
