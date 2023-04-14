@@ -180,6 +180,17 @@ namespace BitterTests
             {
                 Console.WriteLine("Test014 : Failed!");
             }
+
+            bool Test015 = SiteTest.Test015(driver);
+
+            if (Test015)
+            {
+                Console.WriteLine("Test015 : Passed!");
+            }
+            else
+            {
+                Console.WriteLine("Test015 : Failed!");
+            }
         }
 
         public static void SiteReset()
