@@ -379,7 +379,7 @@ namespace BitterTests
                 return false;
             }
         }
-
+        //test 15 is worth 2
         public static bool Test015(IWebDriver driver) //CREATE USER - seems to be bug with email length
         {
             try
@@ -402,12 +402,20 @@ namespace BitterTests
                 return false;
             }
         }
-
-
-
-
-
-
+        //17.test long postal code 
+        //18.test password confirm mismatch 
+        //19.test login with new user 
+        //20.test make post with new user 
+        //21.test retweet from new user 
+        //22.test sending a message 
+        //23.test following, see if number changes
+        //25.test moment link "broken counts as 2"
+        //26. test notif, see if updates after retweet
+        //27. send message to non existent user 
+        //28. send message to existing user 
+        //29. send message to self
+        //30. send message to user with no messages
+        //31. send message with no user
 
         public static void LoginPage(IWebDriver driver, string strUsername, string strPassword)
             {
