@@ -335,6 +335,50 @@ namespace BitterTests
             }
         }
 
+        public static bool Test013(IWebDriver driver) //LOGIN WITH NO USERNAME
+        {
+            try
+            {
+                LoginPage(driver, "", "asdf");
+
+                Thread.Sleep(1000);
+
+                if (driver.Url.Contains("login.php"))
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+        public static bool Test014(IWebDriver driver) //LOGIN WITH NO PASSWORD
+        {
+            try
+            {
+                LoginPage(driver, "nick", "");
+
+                Thread.Sleep(1000);
+
+                if (driver.Url.Contains("login.php"))
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
 
 
 
