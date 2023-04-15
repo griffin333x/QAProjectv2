@@ -457,11 +457,13 @@ namespace BitterTests
         {
             try
             {
+                Thread.Sleep(1000);
+
                 RegisterPageWithoutThings(driver, "NB", "E3B3Y4", "password", "password", "testemail@gmail.com", "newuser",
                     "5061111111", "100 Main Street", "test.com", "Fredericton", "John", "Smith", "coding is fun");
                 IAlert alert = driver.SwitchTo().Alert();
                 string success = alert.Text;
-                Thread.Sleep(1000);
+
 
                 if (success.Contains("NEW TROLL USER ACCEPTED AND INSERTED!"))
                 {
@@ -506,7 +508,7 @@ namespace BitterTests
                 return false;
             }
         }
-        public static bool Test021(IWebDriver driver)
+        public static bool Test021(IWebDriver driver) //NEW USER LOGIN
         {
             try
             {
@@ -524,6 +526,11 @@ namespace BitterTests
                     return false;
                 }
             }
+            catch
+            {
+                return false;
+            }
+        }
         public static bool Test020(IWebDriver driver) //SEND MESSAGE TO USER WHO DOESNT EXIST
         {
             try
@@ -552,9 +559,58 @@ namespace BitterTests
             {
                 return false;
             }
-
         }
-        
+
+        public static bool Test022(IWebDriver driver)
+        {
+            try
+            {
+                LoginPage(driver, "newuser", "password");
+
+                IWebElement messagesLink = SiteWebElement.messagesLink(driver);
+
+                messagesLink.Click();
+                Thread.Sleep(1000);
+
+                SiteWebElement.MsgNameField(driver).SendKeys("nick");
+                SiteWebElement.MsgContentField(driver).SendKeys("heyyyy dude");
+
+                if (SiteWebElement.PostContentField(driver).Text.Contains("just now"))
+                {
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        public static bool Test024(IWebDriver driver) //TEST MOMENT LINK - BUG
+        {
+            try
+            {
+                IWebElement momentsLink = SiteWebElement.momentsLink(driver);
+                momentsLink.Click();
+
+                Thread.Sleep(1000);
+
+                if (driver.Url.Contains("moments.php"))
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch
+            {
+                return false;
+            }
         }
         //17.test long postal code &
         //18.test password confirm mismatch &
