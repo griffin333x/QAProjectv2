@@ -257,16 +257,6 @@ namespace BitterTests
             {
                 Console.WriteLine("Test021 : Failed!");
             }
-
-            bool Test023 = SiteTest.Test023(driver);
-
-            if (Test023)
-            {
-                Console.WriteLine("Test023 : Passed!");
-            }
-            else
-            {
-                Console.WriteLine("Test023 : Failed!");
             bool Test022 = SiteTest.Test022(driver);
 
             if (Test022)
@@ -277,6 +267,84 @@ namespace BitterTests
             {
                 Console.WriteLine("Test022 : Failed!");
             }
+
+            bool Test023 = SiteTest.Test023(driver);
+
+            if (Test023)
+            {
+                Console.WriteLine("Test023 : Passed!");
+            }
+            else
+            {
+                Console.WriteLine("Test023 : Failed!");
+            }
+            bool Test024 = SiteTest.Test024(driver);
+
+            if (Test024)
+            {
+                Console.WriteLine("Test024 : Passed!");
+            }
+            else
+            {
+                Console.WriteLine("Test024 : Failed!");
+            }
+
+            bool Test026 = SiteTest.Test026(driver);
+
+            if (Test026)
+            {
+                Console.WriteLine("Test026 : Passed!");
+            }
+            else
+            {
+                Console.WriteLine("Test026 : Failed!");
+            }
+
+            bool Test027 = SiteTest.Test027(driver);
+
+            if (Test027)
+            {
+                Console.WriteLine("Test027 : Passed!");
+            }
+            else
+            {
+                Console.WriteLine("Test027 : Failed!");
+            }
+
+            bool Test028 = SiteTest.Test028(driver);
+
+            if (Test028)
+            {
+                Console.WriteLine("Test028 : Passed!");
+            }
+            else
+            {
+                Console.WriteLine("Test028 : Failed!");
+            }
+
+            bool Test029 = SiteTest.Test029(driver);
+
+            if (Test029)
+            {
+                Console.WriteLine("Test029 : Passed!");
+            }
+            else
+            {
+                Console.WriteLine("Test029 : Failed!");
+            }
+
+            bool Test030 = SiteTest.Test030(driver);
+
+            if (Test030)
+            {
+                Console.WriteLine("Test030 : Passed!");
+            }
+            else
+            {
+                Console.WriteLine("Test030 : Failed!");
+            }
+
+
         }
 
         public static void SiteReset()

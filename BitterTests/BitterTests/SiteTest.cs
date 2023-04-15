@@ -507,19 +507,19 @@ namespace BitterTests
                 return false;
             }
         }
-     
 
-        public static bool Test020(IWebDriver driver) //SEND MESSAGE TO USER WHO DOESNT EXIST
+
+        public static bool Test020(IWebDriver driver) //CREATE A MESSAGE 
         {
             try
             {
                 LoginPage(driver, "nick", "asdf");
-                
+
                 IWebElement messagesLink = SiteWebElement.messagesLink(driver);
-                
+
                 messagesLink.Click();
                 Thread.Sleep(1000);
-                
+
                 SiteWebElement.MsgNameField(driver).SendKeys("shrek");
                 SiteWebElement.MsgContentField(driver).SendKeys("come netflix and chill at my swamp");
 
@@ -601,7 +601,7 @@ namespace BitterTests
                 IWebElement followPutin = SiteWebElement.FollowPutin(driver);
 
                 followPutin.Click();
-                
+
                 IAlert alert = driver.SwitchTo().Alert();
 
                 string success = alert.Text;
@@ -666,20 +666,133 @@ namespace BitterTests
             }
             catch { return false; }
         }
-        
+        public static bool Test027(IWebDriver driver) //SEND MESSAGE WITH NO TEXT
+        {
+            try
+            {
+                LoginPage(driver, "newuser", "password");
+
+                IWebElement messagesLink = SiteWebElement.messagesLink(driver);
+
+                messagesLink.Click();
+                Thread.Sleep(1000);
+
+                SiteWebElement.MsgNameField(driver).SendKeys("nick");
+                SiteWebElement.MsgContentField(driver).SendKeys("");
+
+                if (SiteWebElement.PostContentField(driver).Text.Contains("just now"))
+                {
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        public static bool Test028(IWebDriver driver) //SEND MESSAGE TO EXISTING USER 
+        {
+            try
+            {
+                LoginPage(driver, "nick", "asdf");
+
+                IWebElement messagesLink = SiteWebElement.messagesLink(driver);
+
+                messagesLink.Click();
+                Thread.Sleep(1000);
+
+                SiteWebElement.MsgNameField(driver).SendKeys("donald");
+                SiteWebElement.MsgContentField(driver).SendKeys("heyyyy dude");
+
+                if (SiteWebElement.PostContentField(driver).Text.Contains("just now"))
+                {
+                    return true;
+                }
+                else
+                {
+                    return true;
+                }
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        public static bool Test029(IWebDriver driver) //SEND MESSAGE TO SELF
+        {
+            try
+            {
+                LoginPage(driver, "nick", "asdf");
+
+                IWebElement messagesLink = SiteWebElement.messagesLink(driver);
+
+                messagesLink.Click();
+                Thread.Sleep(1000);
+
+                SiteWebElement.MsgNameField(driver).SendKeys("nick");
+                SiteWebElement.MsgContentField(driver).SendKeys("heyyyy dude");
+
+                if (SiteWebElement.PostContentField(driver).Text.Contains("just now"))
+                {
+                    return true;
+                }
+                else
+                {
+                    return true;
+                }
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public static bool Test030(IWebDriver driver) //SEND MESSAGE TO SELF
+        {
+            try
+            {
+                LoginPage(driver, "nick", "asdf");
+
+                IWebElement messagesLink = SiteWebElement.messagesLink(driver);
+
+                messagesLink.Click();
+                Thread.Sleep(1000);
+
+                SiteWebElement.MsgNameField(driver).SendKeys("");
+                SiteWebElement.MsgContentField(driver).SendKeys("heyyyy dude");
+
+                if (SiteWebElement.PostContentField(driver).Text.Contains("just now"))
+                {
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
 
 
         public static void LoginPage(IWebDriver driver, string strUsername, string strPassword)
-            {
+        {
             driver.Url = "http://10.157.123.12/site7/login.php";
 
-                //enter username
-                SiteWebElement.txtLoginUserName(driver).SendKeys(strUsername);
-                //enter password
-                SiteWebElement.txtLoginPassword(driver).SendKeys(strPassword);
-                //click login button
-                SiteWebElement.btnLogin(driver).Click();
-            }
+            //enter username
+            SiteWebElement.txtLoginUserName(driver).SendKeys(strUsername);
+            //enter password
+            SiteWebElement.txtLoginPassword(driver).SendKeys(strPassword);
+            //click login button
+            SiteWebElement.btnLogin(driver).Click();
+        }
 
         public static void RegisterPage(IWebDriver driver, string province, string postalcode, string email)
         {
@@ -752,19 +865,3 @@ namespace BitterTests
 
     }
 }
-
-
-        //17.test long postal code &
-        //18.test password confirm mismatch &
-        //19.test login with new user 
-        //20.test make post with new user 
-        //21.test retweet from new user 
-        //22.test sending a message 
-        //23.test following, see if number changes
-        //24.test moment link "broken counts as 2"
-        //26. test notif, see if updates after retweet
-        //27. send message to non existent user 
-        //28. send message to existing user 
-        //29. send message to self
-        //30. send message to user with no messages
-        //31. send message with no user
