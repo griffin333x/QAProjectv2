@@ -776,7 +776,7 @@ namespace BitterTests
             }
         }
 
-        public static bool Test030(IWebDriver driver) //SEND MESSAGE TO SELF
+        public static bool Test030(IWebDriver driver) //SEND MESSAGE TO NO USER
         {
             try
             {
