@@ -275,6 +275,18 @@ namespace BitterTests
             IWebElement postContentField = driver.FindElement(By.ClassName("t-header"));
             return postContentField;
         }
+        public static IWebElement FollowPutin(IWebDriver driver)
+        {
+            //returns the login button from the form authentication page
+            IWebElement followPutin = driver.FindElement(By.ClassName("btn btn-dark"));
+            return followPutin;
+        }
+        public static IWebElement ButtonRetweet(IWebDriver driver)
+        {
+            //returns the login button from the form authentication page
+            IWebElement btnRetweet = driver.FindElement(By.ClassName("btn btn-dark"));
+            return btnRetweet;
+        }
     }
 
     

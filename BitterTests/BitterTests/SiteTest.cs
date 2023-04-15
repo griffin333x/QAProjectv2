@@ -34,7 +34,7 @@ namespace BitterTests
                     return false;
                 }
             }
-            catch 
+            catch
             {
                 return false;
             }
@@ -58,7 +58,7 @@ namespace BitterTests
                     return false;
                 }
             }
-            catch 
+            catch
             {
                 return false;
             }
@@ -84,7 +84,7 @@ namespace BitterTests
                     return false;
                 }
             }
-            catch 
+            catch
             {
                 return false;
             }
@@ -108,7 +108,7 @@ namespace BitterTests
                     return false;
                 }
             }
-            catch 
+            catch
             {
                 return false;
             }
@@ -133,7 +133,7 @@ namespace BitterTests
                 }
             }
 
-            catch 
+            catch
             {
                 return false;
             }
@@ -156,7 +156,7 @@ namespace BitterTests
                     return false;
                 }
             }
-            catch 
+            catch
             {
                 return false;
             }
@@ -180,7 +180,7 @@ namespace BitterTests
                     return false;
                 }
             }
-            catch 
+            catch
             {
                 return false;
             }
@@ -206,7 +206,7 @@ namespace BitterTests
                     return false;
                 }
             }
-            catch 
+            catch
             {
                 return false;
             }
@@ -233,7 +233,7 @@ namespace BitterTests
                     return false;
                 }
             }
-            catch 
+            catch
             {
                 return false;
             }
@@ -262,7 +262,7 @@ namespace BitterTests
                     return false;
                 }
             }
-            catch 
+            catch
             {
                 return false;
             }
@@ -280,7 +280,7 @@ namespace BitterTests
                 logoutButton.Click();
 
                 LoginPage(driver, "nick", "hacked");
-                
+
                 IAlert alert = driver.SwitchTo().Alert();
 
                 string success = alert.Text;
@@ -291,14 +291,14 @@ namespace BitterTests
                 {
                     alert.Accept();
                     return true;
-                    
+
                 }
                 else
                 {
                     return false;
                 }
             }
-            catch 
+            catch
             {
                 return false;
             }
@@ -327,7 +327,7 @@ namespace BitterTests
                     return false;
                 }
             }
-            catch 
+            catch
             {
                 return false;
             }
@@ -350,7 +350,7 @@ namespace BitterTests
                     return false;
                 }
             }
-            catch 
+            catch
             {
                 return false;
             }
@@ -372,7 +372,7 @@ namespace BitterTests
                     return false;
                 }
             }
-            catch 
+            catch
             {
                 return false;
             }
@@ -382,7 +382,7 @@ namespace BitterTests
         {
             try
             {
-                
+
                 RegisterPage(driver, "NB", "E3B3Y4", "test@gmail.com");
 
                 IAlert alert = driver.SwitchTo().Alert();
@@ -399,7 +399,7 @@ namespace BitterTests
                     return false;
                 }
             }
-            catch 
+            catch
             {
                 return false;
             }
@@ -436,7 +436,7 @@ namespace BitterTests
                 IAlert alert = driver.SwitchTo().Alert();
                 string success = alert.Text;
                 Thread.Sleep(1000);
-                
+
                 if (success.Contains("NEW TROLL USER ACCEPTED AND INSERTED!"))
                 {
                     alert.Accept();
@@ -447,7 +447,7 @@ namespace BitterTests
                     return true;
                 }
             }
-            catch 
+            catch
             {
                 return false;
             }
@@ -458,7 +458,7 @@ namespace BitterTests
             try
             {
                 RegisterPageWithoutThings(driver, "NB", "E3B3Y4", "password", "password", "testemail@gmail.com", "newuser",
-                    "5061111111", "100 Main Street", "test.com", "Fredericton", "John", "Smith", "coding is fun");
+                "5061111111", "100 Main Street", "test.com", "Fredericton", "John", "Smith", "coding is fun");
                 IAlert alert = driver.SwitchTo().Alert();
                 string success = alert.Text;
                 Thread.Sleep(1000);
@@ -478,8 +478,6 @@ namespace BitterTests
                 return false;
             }
         }
-
-
         public static bool Test019(IWebDriver driver) //TESTS PASSWORD NEEDING MATCH
         {
             try
@@ -506,24 +504,7 @@ namespace BitterTests
                 return false;
             }
         }
-        public static bool Test021(IWebDriver driver)
-        {
-            try
-            {
-                LoginPage(driver, "newuser", "password");
-
-                Thread.Sleep(1000);
-
-                if (driver.Url.Contains("index.php"))
-                {
-                    return true;
-
-                }
-                else
-                {
-                    return false;
-                }
-            }
+     
         public static bool Test020(IWebDriver driver) //SEND MESSAGE TO USER WHO DOESNT EXIST
         {
             try
@@ -536,7 +517,7 @@ namespace BitterTests
                 Thread.Sleep(1000);
                 
                 SiteWebElement.MsgNameField(driver).SendKeys("shrek");
-                SiteWebElement.MsgContentField(driver).SendKeys("yo yo whats up buddy boy");
+                SiteWebElement.MsgContentField(driver).SendKeys("come netflix and chill at my swamp");
 
                 if (SiteWebElement.PostContentField(driver).Text.Contains("just now"))
                 {
@@ -552,9 +533,87 @@ namespace BitterTests
             {
                 return false;
             }
-
         }
-        
+        public static bool Test021(IWebDriver driver)
+        {
+            try
+            {
+
+                LoginPage(driver, "newuser", "password");
+
+                Thread.Sleep(1000);
+
+                if (driver.Url.Contains("index.php"))
+                {
+                    return true;
+
+                }
+                else
+                {
+                    return false;
+                }
+
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        public static bool Test023(IWebDriver driver) //TEST IF FOLLOWING WORKS
+        {
+            try
+            {
+
+                LoginPage(driver, "nick", "asf");
+
+                Thread.Sleep(1000);
+
+                IWebElement followPutin = SiteWebElement.FollowPutin(driver);
+
+                followPutin.Click();
+                
+                IAlert alert = driver.SwitchTo().Alert();
+
+                string success = alert.Text;
+
+                if (success.Contains("FOLLOWING"))
+                {
+                    return true;
+
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        public static bool Test026(IWebDriver driver) //TEST RETWEET FUNCTIONALITY 
+        {
+            try
+            {
+                LoginPage(driver, "nick", "asdf");
+
+                SiteWebElement.ButtonRetweet(driver).Click();
+
+
+                if (SiteWebElement.PostContentField(driver).Text.Contains("just now"))
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+
+            catch
+            {
+                return false;
+            }
         }
         //17.test long postal code &
         //18.test password confirm mismatch &
@@ -563,7 +622,7 @@ namespace BitterTests
         //21.test retweet from new user 
         //22.test sending a message 
         //23.test following, see if number changes
-        //25.test moment link "broken counts as 2"
+        //24.test moment link "broken counts as 2"
         //26. test notif, see if updates after retweet
         //27. send message to non existent user 
         //28. send message to existing user 

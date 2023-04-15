@@ -21,7 +21,7 @@ namespace BitterTests
         private static MySqlConnection connection;
         static void Main(string[] args)
         {
-            
+            //RUNNING ALL THE TESTS 
 
             IWebDriver driver = new ChromeDriver(@"C:\Selenium");
             //SiteReset();
@@ -255,6 +255,17 @@ namespace BitterTests
             else
             {
                 Console.WriteLine("Test021 : Failed!");
+            }
+
+            bool Test023 = SiteTest.Test023(driver);
+
+            if (Test023)
+            {
+                Console.WriteLine("Test023 : Passed!");
+            }
+            else
+            {
+                Console.WriteLine("Test023 : Failed!");
             }
         }
 
