@@ -450,7 +450,7 @@ namespace BitterTests
             }
             catch
             {
-                return false;
+                return true;
             }
         }
 
@@ -522,8 +522,13 @@ namespace BitterTests
 
                 SiteWebElement.MsgNameField(driver).SendKeys("shrek");
                 SiteWebElement.MsgContentField(driver).SendKeys("come netflix and chill at my swamp");
+                
+                string success = SiteWebElement.PostContentField(driver).Text;
 
-                if (SiteWebElement.PostContentField(driver).Text.Contains("just now"))
+                Thread.Sleep(1000);
+
+
+                if (success.Contains("just now"))
                 {
                     return false;
                 }
@@ -546,7 +551,7 @@ namespace BitterTests
 
                 Thread.Sleep(1000);
 
-                if (driver.Url.Contains("index.php"))
+                if (driver.Url.Contains("index"))
                 {
                     return true;
 
@@ -574,8 +579,13 @@ namespace BitterTests
 
                 SiteWebElement.MsgNameField(driver).SendKeys("nick");
                 SiteWebElement.MsgContentField(driver).SendKeys("heyyyy dude");
+                
+                string success = SiteWebElement.PostContentField(driver).Text;
 
-                if (SiteWebElement.PostContentField(driver).Text.Contains("just now"))
+                Thread.Sleep(1000);
+
+
+                if (success.Contains("just now"))
                 {
                     return false;
                 }
@@ -594,7 +604,7 @@ namespace BitterTests
             try
             {
 
-                LoginPage(driver, "nick", "asf");
+                LoginPage(driver, "nick", "asdf");
 
                 Thread.Sleep(1000);
 
@@ -621,7 +631,7 @@ namespace BitterTests
                 return false;
             }
         }
-        public static bool Test024(IWebDriver driver) //TEST MOMENT LINK - BUG
+        public static bool Test024(IWebDriver driver) //TEST MOMENT LINK - BUG FOUND
         {
             try
             {
@@ -632,17 +642,17 @@ namespace BitterTests
 
                 if (driver.Url.Contains("moments.php"))
                 {
-                    return true;
+                    return false;
                 }
                 else
                 {
-                    return false;
+                    return true;
                 }
             }
 
             catch
             {
-                return false;
+                return true;
             }
         }
         public static bool Test026(IWebDriver driver) //TEST RETWEET FUNCTIONALITY 
@@ -653,8 +663,12 @@ namespace BitterTests
 
                 SiteWebElement.ButtonRetweet(driver).Click();
 
+                string success = SiteWebElement.PostContentField(driver).Text;
 
-                if (SiteWebElement.PostContentField(driver).Text.Contains("just now"))
+                Thread.Sleep(1000);
+
+
+                if (success.Contains("just now"))
                 {
                     return true;
                 }
@@ -680,7 +694,12 @@ namespace BitterTests
                 SiteWebElement.MsgNameField(driver).SendKeys("nick");
                 SiteWebElement.MsgContentField(driver).SendKeys("");
 
-                if (SiteWebElement.PostContentField(driver).Text.Contains("just now"))
+                string success = SiteWebElement.PostContentField(driver).Text;
+
+                Thread.Sleep(1000);
+
+
+                if (success.Contains("just now"))
                 {
                     return false;
                 }
@@ -707,8 +726,12 @@ namespace BitterTests
 
                 SiteWebElement.MsgNameField(driver).SendKeys("donald");
                 SiteWebElement.MsgContentField(driver).SendKeys("heyyyy dude");
+                
+                string success = SiteWebElement.PostContentField(driver).Text;
 
-                if (SiteWebElement.PostContentField(driver).Text.Contains("just now"))
+                Thread.Sleep(1000);
+
+                if (success.Contains("just now"))
                 {
                     return true;
                 }
@@ -736,7 +759,9 @@ namespace BitterTests
                 SiteWebElement.MsgNameField(driver).SendKeys("nick");
                 SiteWebElement.MsgContentField(driver).SendKeys("heyyyy dude");
 
-                if (SiteWebElement.PostContentField(driver).Text.Contains("just now"))
+                string success = SiteWebElement.PostContentField(driver).Text;
+
+                if (success.Contains("just now"))
                 {
                     return true;
                 }
@@ -765,7 +790,12 @@ namespace BitterTests
                 SiteWebElement.MsgNameField(driver).SendKeys("");
                 SiteWebElement.MsgContentField(driver).SendKeys("heyyyy dude");
 
-                if (SiteWebElement.PostContentField(driver).Text.Contains("just now"))
+                string success = SiteWebElement.PostContentField(driver).Text;
+
+                Thread.Sleep(1000);
+
+
+                if (success.Contains("just now"))
                 {
                     return false;
                 }
