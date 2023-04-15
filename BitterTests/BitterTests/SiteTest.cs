@@ -10,6 +10,7 @@ using System.Security.Policy;
 using Bogus;
 using MySql.Data.MySqlClient; //tried getting the connection to work, had trouble with it
 using System.Runtime.Remoting.Messaging;
+using System.Linq.Expressions;
 
 namespace BitterTests
 {
@@ -507,29 +508,7 @@ namespace BitterTests
             }
         }
      
-        public static bool Test021(IWebDriver driver) //NEW USER LOGIN
-        {
-            try
-            {
-                LoginPage(driver, "newuser", "password");
 
-                Thread.Sleep(1000);
-
-                if (driver.Url.Contains("index.php"))
-                {
-                    return true;
-
-                }
-                else
-                {
-                    return false;
-                }
-            }
-            catch
-            {
-                return false;
-            }
-        }
         public static bool Test020(IWebDriver driver) //SEND MESSAGE TO USER WHO DOESNT EXIST
         {
             try
@@ -559,11 +538,10 @@ namespace BitterTests
                 return false;
             }
         }
-        public static bool Test021(IWebDriver driver)
+        public static bool Test021(IWebDriver driver) //NEW USER LOGIN
         {
             try
             {
-
                 LoginPage(driver, "newuser", "password");
 
                 Thread.Sleep(1000);
@@ -577,7 +555,34 @@ namespace BitterTests
                 {
                     return false;
                 }
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        public static bool Test022(IWebDriver driver)
+        {
+            try
+            {
+                LoginPage(driver, "newuser", "password");
 
+                IWebElement messagesLink = SiteWebElement.messagesLink(driver);
+
+                messagesLink.Click();
+                Thread.Sleep(1000);
+
+                SiteWebElement.MsgNameField(driver).SendKeys("nick");
+                SiteWebElement.MsgContentField(driver).SendKeys("heyyyy dude");
+
+                if (SiteWebElement.PostContentField(driver).Text.Contains("just now"))
+                {
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
             }
             catch
             {
@@ -616,46 +621,6 @@ namespace BitterTests
                 return false;
             }
         }
-        public static bool Test026(IWebDriver driver) //TEST RETWEET FUNCTIONALITY 
-        {
-            try
-            {
-                LoginPage(driver, "nick", "asdf");
-
-                SiteWebElement.ButtonRetweet(driver).Click();
-
-
-                if (SiteWebElement.PostContentField(driver).Text.Contains("just now"))
-                {
-
-        public static bool Test022(IWebDriver driver)
-        {
-            try
-            {
-                LoginPage(driver, "newuser", "password");
-
-                IWebElement messagesLink = SiteWebElement.messagesLink(driver);
-
-                messagesLink.Click();
-                Thread.Sleep(1000);
-
-                SiteWebElement.MsgNameField(driver).SendKeys("nick");
-                SiteWebElement.MsgContentField(driver).SendKeys("heyyyy dude");
-
-                if (SiteWebElement.PostContentField(driver).Text.Contains("just now"))
-                {
-                    return false;
-                }
-                else
-                {
-                    return true;
-                }
-            }
-            catch
-            {
-                return false;
-            }
-        }
         public static bool Test024(IWebDriver driver) //TEST MOMENT LINK - BUG
         {
             try
@@ -680,20 +645,29 @@ namespace BitterTests
                 return false;
             }
         }
-        //17.test long postal code &
-        //18.test password confirm mismatch &
-        //19.test login with new user 
-        //20.test make post with new user 
-        //21.test retweet from new user 
-        //22.test sending a message 
-        //23.test following, see if number changes
-        //24.test moment link "broken counts as 2"
-        //26. test notif, see if updates after retweet
-        //27. send message to non existent user 
-        //28. send message to existing user 
-        //29. send message to self
-        //30. send message to user with no messages
-        //31. send message with no user
+        public static bool Test026(IWebDriver driver) //TEST RETWEET FUNCTIONALITY 
+        {
+            try
+            {
+                LoginPage(driver, "nick", "asdf");
+
+                SiteWebElement.ButtonRetweet(driver).Click();
+
+
+                if (SiteWebElement.PostContentField(driver).Text.Contains("just now"))
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+
+            }
+            catch { return false; }
+        }
+        
+
 
         public static void LoginPage(IWebDriver driver, string strUsername, string strPassword)
             {
@@ -741,6 +715,7 @@ namespace BitterTests
             SiteWebElement.btnLogin(driver).Click();
 
         }
+
         public static void RegisterPageWithoutThings(IWebDriver driver, string province, string postalcode, string password, string confirmPass, string email,
              string username, string phone, string address, string url, string location, string firstName, string lastName, string description)
         {
@@ -765,6 +740,7 @@ namespace BitterTests
             SiteWebElement.btnLogin(driver).Click();
 
         }
+
         public static void FakeData(IWebDriver driver)
         {
             // Create a Faker object.
@@ -778,3 +754,17 @@ namespace BitterTests
 }
 
 
+        //17.test long postal code &
+        //18.test password confirm mismatch &
+        //19.test login with new user 
+        //20.test make post with new user 
+        //21.test retweet from new user 
+        //22.test sending a message 
+        //23.test following, see if number changes
+        //24.test moment link "broken counts as 2"
+        //26. test notif, see if updates after retweet
+        //27. send message to non existent user 
+        //28. send message to existing user 
+        //29. send message to self
+        //30. send message to user with no messages
+        //31. send message with no user
